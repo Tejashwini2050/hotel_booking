@@ -87,7 +87,7 @@ if (isset($_POST['submit_booking'])) {
 
             if ($stmt->execute()) {
                 // Redirect to a confirmation page or any other desired page
-                header("Location:cono.php?cid=$cid&bid=$bid");
+                header("Location:cono.php?cid=$cid&bid=$bid&rno=$rno");
                 exit;
             } else {
                 echo "Error: " . $stmt->error;
