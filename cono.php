@@ -29,7 +29,7 @@
                 // Get the 'cid' value from the URL
                 $cid = $_GET['cid'];
                 $bid = $_GET['bid'];
-               
+                $rno = $_GET['rno'];
                 // Prepare and execute the query using prepared statements
                 $sql = "SELECT cid, name, email, gender, phone_no FROM customer WHERE cid = ?";
                 $stmt = $connection->prepare($sql);
@@ -63,12 +63,32 @@
                         echo "Check_OUT: " . $row1['check_out'] . "<br>";
                         echo "ROOM_TYPE: " . $row1['room_type'] . "<br>";
                         echo "Number Of Guests: " . $row1['no_of_guests'] . "<br>";
-                       
+                        $checkInDate = strtotime($row1['check_in']); // Convert to Unix timestamp
+                        $checkOutDate = strtotime($row1['check_out']); // Convert to Unix timestamp
+                        
+                        // Calculate the number of nights based on check-in and check-out dates
+                         $nightDifference = ($checkOutDate - $checkInDate) / (60 * 60 * 24);
                     }
                 } else {
                     echo "No data found.";
                 }
                 
+                
+                $roomSql = "SELECT rno,price FROM room WHERE rno = ?";
+                $stmt = $connection->prepare($roomSql);
+                $stmt->bind_param("i", $rno);
+                $stmt->execute();
+                $roomResult = $stmt->get_result();
+
+                if ($roomResult->num_rows > 0) {
+                    $roomData = $roomResult->fetch_assoc();
+                    $pricePerNight = $roomData['price'];
+            
+                    // Calculate the total price for the booking
+                    $totalPrice = $pricePerNight * $nightDifference;
+
+                    echo "<p><strong>Total Price:</strong> Rs" . $totalPrice . "</p>";
+    } 
                 $connection->close();
                 ?>
             </div>
