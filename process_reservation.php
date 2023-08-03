@@ -8,9 +8,9 @@
     <link rel="stylesheet" href="room.css">
 </head>
 <body>
-    <header>
+    <!--<header>
         <h1>Room Reservation</h1>
-    </header>
+    </header>-->
 
     <main>
         <div class="reservation-container">
@@ -32,7 +32,7 @@
                 </select>
 
                 <label for="guests">Number of Guests:</label>
-                <input type="number" id="guests" name="guests" min="1" max="10" value="1">
+                <input type="number" id="guests" name="guests" min="1" max="6" value="1">
 
                 <button type="submit" name="submit_booking">Reserve Room</button>
             </form>
