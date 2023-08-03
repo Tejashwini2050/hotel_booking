@@ -58,7 +58,7 @@
                 // For example, you can use fetch() to send the form data to the backend server for processing.
 
                 // After the booking is processed, you can redirect the user to a confirmation page.
-                window.location.href = 'confirmation.html';
+               // window.location.href = 'confirmation.html';
             });
         });
         use LDAP\ResultEntry;
@@ -92,16 +92,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($stmt->execute()) {
         echo "Record inserted successfully.";
+         // Get the customer ID (cid) of the newly inserted customer
+         $cid = $connection->insert_id;
+
+         // Redirect to the booking page and pass the customer ID (cid) as a URL parameter
+         header("Location: room.html?cid=$cid");
+         exit;
     } else {
         echo "Error: " . $sql . "<br>" . $connection->error;
     }
+    $result = $connection->query($sql);
+    
+
 
     $stmt->close();
     $connection->close();
 }
 
 ?>
-
 
 </body>
 </html>
