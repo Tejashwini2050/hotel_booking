@@ -37,6 +37,7 @@
                 <label for="other">Other</label>
 
                 <!-- <input type="submit" name="submit" value="Submit"> -->
+                <input type="hidden" name="cid" value="<?php echo $_GET['cid']; ?>">
                 <button type="submit">Submit Booking</button> 
             </form>
         </section>
@@ -96,7 +97,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
          $cid = $connection->insert_id;
 
          // Redirect to the booking page and pass the customer ID (cid) as a URL parameter
-         header("Location: room.html?cid=$cid");
+         header("Location: process_reservation.php?cid=$cid");
          exit;
     } else {
         echo "Error: " . $sql . "<br>" . $connection->error;
