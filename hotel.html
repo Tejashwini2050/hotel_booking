@@ -40,21 +40,7 @@
     </section>
     <section id="rooms">
         <h2>Rooms & Suites</h2>
-     <!--   div class="room">
-            <img src="pic1.jpg" alt="Room 1">
-            <h3>Deluxe Room</h3>
-            <p>Spacious and elegantly furnished room with a comfortable king-sized bed.</p>
-            <span class="price">$200 per night</span>
-            <a href="booking.html" class="btn">Book Now</a>
-        </div>
-        <div class="room">
-           
-            <img src="pic2.jpg" alt="Room 2">
-            <h3>Executive Suite</h3>
-            <p>Luxurious suite with a separate living area, bedroom, and stunning views.</p>
-            <span class="price">$350 per night</span>
-            <a href="booking.html" class="btn">Book Now</a>
-        </div -->
+    
         <div id="dynamic-content"></div>
     </section>
     <section id="contact">
@@ -118,25 +104,25 @@ document.addEventListener('DOMContentLoaded', function () {
                 {
                     name: 'Single Room',
                     description: 'Spacious and elegantly furnished room with a comfortable king-sized bed.',
-                    price: 200,
+                    price: 2500,
                     imageUrl: 'pic4.jpg' // Replace with the actual image URL
                 },
                 {
                     name: 'Deluxe Room',
                     description: 'Premium accommodation to provide guests with a heightened level of comfort and luxury.',
-                    price: 250,
+                    price: 4000,
                     imageUrl: 'pic5.jpg' // Replace with the actual image URL
                 },
                 {
                     name: 'Executive Suite',
                     description: 'Luxurious suite with a separate living area, bedroom, and stunning views.',
-                    price: 300,
+                    price: 5499,
                     imageUrl: 'pic1.jpg' // Replace with the actual image URL
                 },
                 {
                     name: 'Presidential Suite',
                     description: 'Most exclusive suite with a living area, kitchen, bedroom and lounge access.',
-                    price: 400,
+                    price: 6800,
                     imageUrl: 'pic3.jpg' // Replace with the actual image URL
                 },
                 // Add more rooms here with their respective image URLs
@@ -152,8 +138,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     <img src="${room.imageUrl}" alt="${room.name}">
                     <h3>${room.name}</h3>
                     <p>${room.description}</p>
-                    <span class="price">$${room.price} per night</span>
-                    <a href="booking.html" class="btn">Book Now</a>
+                    <span class="price">Rs. ${room.price} per night</span>
+                    <a href="http://localhost/Okay/trying.php" class="btn">Book Now</a>
                 `;
 
                 dynamicContent.appendChild(roomElement);
