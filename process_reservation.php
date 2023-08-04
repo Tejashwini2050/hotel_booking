@@ -44,7 +44,15 @@
 // ... Database connection and other code ...
 // Create a connection to your MySQL database
 $connection = new mysqli('localhost', 'root', '', 'hotel_hotel');
+if (isset($_GET['cid'])) {
+    $cid = $_GET['cid'];
+    //echo "Customer ID (cid): " . $cid . "<br>";
 
+    // Use prepared statements to safely include the 'cid' value in the SQL query
+    $sql = "SELECT * FROM customer WHERE cid = ?";
+    $stmt = $connection->prepare($sql);
+    $stmt->bind_param("i", $cid);
+}
 // Check for connection errors
 if ($connection->connect_error) {
     die("Connection failed: " . $connection->connect_error);
@@ -69,9 +77,10 @@ if (isset($_POST['submit_booking'])) {
         $rno = $roomData['rno'];
 
         // Insert booking data into the "booking" table
-        $bookingSql = "INSERT INTO booking (check_in, check_out, room_type, NO_OF_GUESTS) VALUES (?, ?, ?, ?)";
-        $stmt = $connection->prepare($bookingSql);
-        $stmt->bind_param("sssi", $check_in, $check_out, $roomType, $guests);
+        $cid = $_GET['cid'];
+        $sql = "INSERT INTO booking (cid, check_in, check_out, room_type, NO_OF_GUESTS) VALUES (?, ?, ?, ?, ?)";
+        $stmt = $connection->prepare($sql);
+        $stmt->bind_param("isssi", $cid, $check_in, $check_out, $roomType, $guests);
 
         if ($stmt->execute()) {
             // Get the booking ID (bid) of the newly inserted booking
